@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:wght@100&display=swap');
+
+*{
+    text-decoration: none;
+    font-family: 'Poppins', 'sans-serif';
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(244, 242, 242);
+}
+.all-content{
+    min-height: 100vh;
+}
+
+.nav{
+    background-color: #2e3192;
+    color: white;
+    font-size: 30px;
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+.choose-role-heading{
+    font-size: 25px;
+    padding: 20px;
+    text-align: center;
+}
+.main{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.anchor-tag{
+    margin: auto;
+
+}
+.student-content, .faculty-content{
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.48);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.48);
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px dodgerblue;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.48);
+    color: dodgerblue;
+    cursor: pointer;
+    height: 200px;
+    padding: 30px;
+    text-align: center;
+    transition: 0.2s all;
+    width: 280px;
+    margin: auto;
+}
+
+.student-content:hover, .faculty-content:hover{
+    background-color: dodgerblue;
+    color: white;
+}
+.student-content:active, .faculty-content:active{
+    transform: scale(0.7);
+}
+.student-content i, .faculty-content i{
+    font-size: 8rem;
+}
+
+.student-content p,.faculty-content p{
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px;
+    padding: 7px 30px;
+}
+footer{
+    margin-top: 50px;
+    background: #111;
+    color: #fff;
+    font-size: 17px;
+    padding: 20px 23px;
+    text-align: center;
+}
+footer span a{
+    color: dodgerblue;
+    text-decoration: none;
+}
+footer span a:hover{
+    text-decoration: underline;
+}
+@media screen and (max-width: 800px) {
+    .main{
+        display: block;
+    }
+    .faculty-content,.student-content{
+        margin: 50px auto;
+    }
+  }
+
