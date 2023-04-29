@@ -28,6 +28,7 @@ mongoose.connect(process.env.MONGODB_URL,(error)=>{
     else{
         console.log("Connected to mongo");
     }
+    
 });
 
 
