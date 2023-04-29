@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "build": "node app.js"
+    "build": "netlify deploy --prod"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "express-session": "^1.17.3",
     "mongodb": "4.1",
     "mongoose": "^6.10.0",
+    "netlify-lambda": "^2.0.16",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-oauth2": "^1.6.1"

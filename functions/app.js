@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-const Student = require("./models/student");
-const faculty = require("./models/faculty");
+const Student = require("../models/student");
+const faculty = require("../models/faculty");
 const app = express();
 mongoose.set('strictQuery', true);
 app.set("view engine","ejs");
@@ -32,7 +32,7 @@ mongoose.connect(process.env.MONGODB_URL,(error)=>{
 
 
 app.get("/",(req,res)=>{
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/dist/index.html");
 });
 
 app.get('/studentlogin',(req,res) => {
