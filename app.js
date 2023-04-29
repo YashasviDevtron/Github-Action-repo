@@ -2,7 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const sessions = require("express-session");
+const sessions = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const Student = require("./models/student");
@@ -74,7 +74,7 @@ app.get("/facultylogin",(req,res)=>{
 });
 
 app.get('/logout',(req,res) => {
-    req.session.destroy();
+    req.session = null;
     console.log("You have been logged out!");
     res.redirect('/');
 });
