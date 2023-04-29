@@ -2,11 +2,11 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
+const sessions = require("express-session");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const Student = require("./models/student");
 const faculty = require("./models/faculty");
-const sessions = require("express-session");
 const app = express();
 mongoose.set('strictQuery', true);
 app.set("view engine","ejs");
@@ -23,16 +23,22 @@ app.use(sessions({
 }));
 var session;
 
+mongoose.connect(process.env.MONGODB_URL,(error)=>{
+    if(error)throw error;
+    else{
+        console.log("Connected to mongo");
+    }
+});
 
 
 app.get("/",(req,res)=>{
-    res.render("Home")
+    res.sendFile(__dirname + "/index.html");
 });
 
 app.get('/studentlogin',(req,res) => {
     session=req.session;
     if(session.email){
-        res.redirect("studentdashboard");
+        res.redirect("/studentdashboard");
     }else
     res.render("studentlogin");
 });
@@ -48,7 +54,7 @@ app.get("/studentdashboard", async (req,res)=>{
                 email: student.email,
                 phone: student.phone,
                 branch: student.branch,
-                sem:student.sem
+                sem: student.sem
             });
         }else
         res.redirect("/studentlogin");
@@ -56,11 +62,11 @@ app.get("/studentdashboard", async (req,res)=>{
     catch(err){
         console.log(err);
     }
-})
+});
 
 app.get("/studentregistration",(req,res)=>{
     res.render("studentregistration");
-})
+});
 
 app.get("/facultylogin",(req,res)=>{
     res.render("facultylogin");
@@ -68,23 +74,9 @@ app.get("/facultylogin",(req,res)=>{
 
 app.get('/logout',(req,res) => {
     req.session.destroy();
+    console.log("You have been logged out!");
     res.redirect('/');
 });
-
-
-
-
-
-
-
-    
-mongoose.connect(process.env.MONGODB_URL,(error)=>{
-    if(error)throw error;
-    else{
-        console.log("Connected to mongo");
-    }
-});
-
 
 
 app.post("/studentlogin", async function(req, res){
@@ -111,7 +103,6 @@ app.post("/studentlogin", async function(req, res){
     }
 });
     
-
 app.listen(process.env.PORT || 3000,()=>{
     console.log("Server has started on port", process.env.PORT || 3000);
 });

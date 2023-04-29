@@ -14,7 +14,7 @@
 
 <body>
     <div class="nav">
-        <i class="fa-solid fa-house" onclick="openPage('/')"></i>
+        <i class="fa-solid fa-house"></i>
         <div class="headin">NextResultz !</div>
         <a href="/logout" class="anchor-tag-sd"><i class="fa fa-power-off" ></i></a>
     </div>
@@ -72,14 +72,14 @@
                                         <span class="details">Semester</span>
                                         <select required name="sem" id="sem">
                                             <option disabled selected value> - select semester - </option>
-                                            <option value="Sem I">Sem I</option>
-                                            <option value="Sem II">Sem II</option>
-                                            <option value="Sem III">Sem III</option>
-                                            <option value="Sem IV">Sem IV</option>
-                                            <option value="Sem V">Sem V</option>
-                                            <option value="Sem VI">Sem VI</option>
-                                            <option value="Sem VII">Sem VII</option>
-                                            <option value="Sem VIII">Sem VIII</option>I
+                                            <option value="I">Sem I</option>
+                                            <option value="II">Sem II</option>
+                                            <option value="III">Sem III</option>
+                                            <option value="IV">Sem IV</option>
+                                            <option value="V">Sem V</option>
+                                            <option value="VI">Sem VI</option>
+                                            <option value="VII">Sem VII</option>
+                                            <option value="VIII">Sem VIII</option>I
                                         </select>
                                     </div>
                                 </div>
@@ -124,15 +124,15 @@
                 <div class="head">
                     <p>Here is your result!</p>
                 </div>
-                <h2>CGPA: 9.2 <i><span>( till 4<sup>th</sup> Sem )</span></i></h2>
+                <h2>CGPA: 9.2 <i><span>( till <%= sem%> Sem )</span></i></h2>
                 <table class="table-name">
                     <tr>
-                        <th>Name: <span>Kiran Yadav</span></th>
-                        <th>PRN: <span>20200802129</span></th>
+                        <th>Name: <span><%= name%></span></th>
+                        <th>PRN: <span><%= prn%></span></th>
                     </tr>
                     <tr>
-                        <th>Sem: 4<sup>th</sup></th>
-                        <th>Branch: B.Tech CSE</th>
+                        <th>Sem: <%= sem%></th>
+                        <th>Branch: <%= branch%></th>
                     </tr>
                 </table>
                 <hr>
