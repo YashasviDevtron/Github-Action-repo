@@ -43,7 +43,9 @@ app.get('/studentlogin',(req,res) => {
     }else
     res.render("studentlogin");
 });
-
+app.get("/facultydashboard",(req,res)=>{
+    res.render("facultydashboard");
+})
 app.get("/studentdashboard", async (req,res)=>{
     try{
         session=req.session;
