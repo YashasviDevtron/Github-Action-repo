@@ -57,7 +57,7 @@ body{
 }
 .info{
     border-radius:  50px 0 50px 0;
-    background-image: url("../assets/img/studentloginpagebaclground.png");
+    background-image: url("../img/studentloginpagebaclground.png");
     background-size: cover;
     height: 100%;
     width: 60%;
