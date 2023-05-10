@@ -64,8 +64,7 @@ app.get("/studentdashboard", async (req,res)=>{
 });
 
 // app.get("/facultydashboard",(req,res)=>{
-//     res.render("facultydashboard");
-// });
+//     res.render("facultydashboard");});
 
 app.get("/studentregistration",(req,res)=>{
     res.render("studentregistration");
