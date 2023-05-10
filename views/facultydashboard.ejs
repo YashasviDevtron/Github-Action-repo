@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | NextResultz</title>
+    <link rel="icon" href="../assets/favicon.ico">
+    <link rel="stylesheet" href="../assets/facultydashboard.css">
+    <script src="https://kit.fontawesome.com/552542671f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="nav">
+        <i class="fa-solid fa-house" onclick="openPage('./index.html')"></i>
+        <div class="headin">NextResultz !</div>
+    </div>
+    <div class="main">
+        <div class="top">
+            <div class="top-left box-shadow">
+                <div class="left">
+                    <div class="profile"></div>
+                    <div class="name">
+                        <h1>Kiran Yadav</h1>
+                        <p><strong><i>Assitant Professor (Ph.D)</i></strong></p>
+                        <p><i>School of computer Applications and Engineering.</i></p>
+                    </div>
+                    <div class="edit">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="options box-shadow">
+                <div class="display"><button class="box-shadow"><i class=" fa-solid fa-eye"></i> Display Result</button>
+                </div>
+                <div class="upload"><button class="box-shadow"><i class="fa-solid fa-file-arrow-up"></i> Upload
+                        Result</button></div>
+            </div>
+            <div id="DigitalCLOCK" class="clock box-shadow" onload="showTime()">
+                <div class="time" id="time"></div>
+                <div class="day" id="day"></div>
+                <div class="data" id="date"></div>
+            </div>
+        </div>
+        <div class="content box-shadow">
+            <h2>Select a subject to display the result:</h2>
+            <div class="subjects">
+                <div class="cards">
+                    <h3>DBMS CSE201</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards ">
+                    <h3>IIS CSE203</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>SS CSE205</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>CN CSE208</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>EVS CSE211</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h2>Select a subject to upload the result:</h2>
+            <div class="subjects">
+                <div class="cards">
+                    <h3>DBMS CSE201</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>IIS CSE203</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>SS CSE205</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>CN CSE208</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+                <div class="cards">
+                    <h3>EVS CSE211</h3>
+                    <h5>4th SEM</h5>
+                    <h5>Batch of 2020</h5>
+                </div>
+            </div>
+        </div>
+        <div class="marks box-shadow">
+            <table>
+                <tr>
+                    <th>Sr. No</th>
+                    <th>PRN</th>
+                    <th>Grade</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>20200802129</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>20200802128</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>20200802127</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>20200802121</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>20200802120</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>20200802123</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>20200802126</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>20200802117</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>20200802146</td>
+                    <td>A+</td>
+                    <td><i class="fas fa-edit"></i></td>
+                    <td><i class="fa-solid fa-trash-can"></i></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <script src="./facultyDasgboard.js"></script>
+</body>
+
+</html>

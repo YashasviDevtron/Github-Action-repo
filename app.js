@@ -25,12 +25,7 @@ var session;
 
 mongoose.connect(process.env.MONGODB_URL,(error)=>{
     if(error)throw error;
-    else{
-        console.log("Connected to mongo");
-    }
-    
 });
-
 
 app.get("/",(req,res)=>{
     res.sendFile(__dirname + "/index.html");
@@ -38,14 +33,14 @@ app.get("/",(req,res)=>{
 
 app.get('/studentlogin',(req,res) => {
     session=req.session;
-    if(session.email){
-        res.redirect("/studentdashboard");
-    }else
-    res.render("studentlogin");
+    if(session.email){res.redirect("/studentdashboard");}
+    else{res.render("studentlogin");}
 });
-app.get("/facultydashboard",(req,res)=>{
-    res.render("facultydashboard");
-})
+
+app.get("/facultylogin",(req,res)=>{
+    res.render("facultylogin");
+});
+
 app.get("/studentdashboard", async (req,res)=>{
     try{
         session=req.session;
@@ -59,20 +54,21 @@ app.get("/studentdashboard", async (req,res)=>{
                 branch: student.branch,
                 sem: student.sem
             });
-        }else
-        res.redirect("/studentlogin");
+        }
+        else{res.redirect("/studentlogin");}
+        
     }
     catch(err){
         console.log(err);
     }
 });
 
+// app.get("/facultydashboard",(req,res)=>{
+//     res.render("facultydashboard");
+// });
+
 app.get("/studentregistration",(req,res)=>{
     res.render("studentregistration");
-});
-
-app.get("/facultylogin",(req,res)=>{
-    res.render("facultylogin");
 });
 
 app.get('/logout',(req,res) => {
@@ -80,7 +76,6 @@ app.get('/logout',(req,res) => {
     console.log("You have been logged out!");
     res.redirect('/');
 });
-
 
 app.post("/studentlogin", async function(req, res){
     try {
@@ -93,19 +88,11 @@ app.post("/studentlogin", async function(req, res){
                 console.log(req.session)
                 res.redirect("/studentdashboard");
             }
-            else{
-                console.log("Password does not match!");
-            }
+            else{res.status(401).send("Invalid credentials!")}
         } 
-        else{
-            console.log("User does not exists");
-        }
+        else{res.status(401).send("Invalid credentials!")}
     }
-    catch(error){
-        res.status(400).send("Something went wrong!")
-    }
+    catch(error){res.status(400).send("Something went wrong!")}
 });
     
-app.listen(process.env.PORT || 3000,()=>{
-    console.log("Server has started on port", process.env.PORT || 3000);
-});
+app.listen(process.env.PORT || 3000,()=>{console.log("Server has started on port", process.env.PORT || 3000);});
