@@ -9,9 +9,6 @@ body{
     padding: 0;
     background-color: aliceblue;
 }
-.anchor-tag-sl{
-    margin: auto;
-}
 .nav{
     background-color: #2e3192;
     color: white;
@@ -21,13 +18,16 @@ body{
 .main{
     min-height: 70vh;
 }
-
+.anchor-tag-sl{
+    margin: auto;
+}
 .nav i{
     color: white;
     cursor: pointer;
     margin: auto;
     padding: 5px 5px 5px 10px;
     transition: 0.2s all;
+    /* z-index: 99; */
 }
 .nav i:hover{
     color: rgb(199, 193, 193);
@@ -50,14 +50,14 @@ body{
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.48);
     border-radius: 50px 50px 50px 50px;
     display: flex;
-    background-color: #f7fa91;
+    background-color: #9b60d2;
     margin: 50px auto;
     height: 380px;
     width: 608px;
 }
 .info{
     border-radius:  50px 0 50px 0;
-    background-image: url("../assets/loginPageBackground.png");
+    background-image: url("../assets/img/studentloginpagebaclground.png");
     background-size: cover;
     height: 100%;
     width: 60%;
@@ -141,17 +141,18 @@ input[type="submit"]{
     width: 30%;
     height: 40px;
     border: 1px solid;
-    background: rgb(157, 150, 212);
+    background: rgb(17, 188, 226);
     border-radius: 25px;
     font-size: 15px;
     color: #e9f4fb;
     font-weight: 700;
+    
 }
 input[type="submit"]:active{
     transform: scale(0.7);
 }
 input[type="submit"]:hover{
-    background-color: dodgerblue;
+    background-color: rgb(6, 29, 52);
 }
 
 footer{
