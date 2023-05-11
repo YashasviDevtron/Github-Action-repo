@@ -26,33 +26,33 @@
           <div class="user-details">
             <div class="input-box">
               <span class="details">Full Name</span>
-              <input type="text" placeholder="Enter your name" required>
+              <input type="text" name="name" required placeholder="Enter your name" required>
             </div>
             <div class="input-box">
               <span class="details">PRN</span>
-              <input type="text" placeholder="Enter your PRN " required>
+              <input type="text" name="prn" required placeholder="Enter your PRN " required>
             </div>
             <div class="input-box">
               <span class="details">University mail</span>
-              <input type="text" placeholder="Enter your University email" required>
+              <input type="email" name="email" required placeholder="Enter your University email" required>
             </div>
             <div class="input-box">
               <span class="details">Current semester</span>
-              <select required name="sem" id="sem">
+              <select required type="text" name="sem" id="sem">
                 <option disabled selected value> - select sem - </option>
-                <option value="Sem I">Sem I</option>
-                <option value="Sem II">Sem II</option>
-                <option value="Sem III">Sem III</option>
-                <option value="Sem IV">Sem IV</option>
-                <option value="Sem V">Sem V</option>
-                <option value="Sem VI">Sem VI</option>
-                <option value="Sem VII">Sem VII</option>
-                <option value="Sem VIII">Sem VIII</option>
+                <option value="I">Sem I</option>
+                <option value="II">Sem II</option>
+                <option value="III">Sem III</option>
+                <option value="IV">Sem IV</option>
+                <option value="V">Sem V</option>
+                <option value="VI">Sem VI</option>
+                <option value="VII">Sem VII</option>
+                <option value="VIII">Sem VIII</option>
               </select>
             </div>
             <div class="input-box">
               <span class="details">Branch/Stream</span>
-              <select required name="branch" id="branch">
+              <select required type="text" name="branch" id="branch">
                 <option disabled selected value> - select sem - </option>
                 <option value="BTech CSE">BTech CSE</option>
                 <option value="BTech BioE">BTech BioE</option>
@@ -61,22 +61,22 @@
             </div>
             <div class="input-box">
               <span class="details">Specialisation</span>
-              <select required name="branch" id="branch">
+              <select required type="text" name="spec" id="branch">
                 <option disabled selected value> - select spec. - </option>
-                <option value="BTech CSE">AI/ML</option>
-                <option value="BTech BioE">Web Dev</option>
-                <option value="BCA">Cuber Security</option>
-                <option value="BCA">Data Science</option>
-                <option value="BCA">Not Applicable</option>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Web Dev">Web Dev</option>
+                <option value="Cyber Security">Cyber Security</option>
+                <option value="Data Science">Data Science</option>
+                <option value="N/A">Not Applicable</option>
               </select>
             </div>
             <div class="input-box">
               <span class="details">Phone Number</span>
-              <input type="text" placeholder="Enter your number" required>
+              <input type="text" name="phone" placeholder="Enter your number" required>
             </div>
             <div class="input-box">
               <span class="details">Personal mail</span>
-              <input type="email" placeholder="Enter your persinal mail" required>
+              <input type="email" name="per_mail" required placeholder="Enter your persinal mail" required>
             </div>
             <div class="input-box">
               <span class="details">Password</span>
@@ -84,10 +84,10 @@
             </div>
             <div class="input-box">
               <span class="details">Confirm Password</span>
-              <input type="password" id="pswd-cnf" placeholder="Confirm your password" required>
+              <input type="password" name="password" id="pswd-cnf" placeholder="Confirm your password" required>
             </div>
           </div>
-          <div class="gender-details">
+          <!-- <div class="gender-details">
             <input type="radio" name="gender" id="dot-1">
             <input type="radio" name="gender" id="dot-2">
             <input type="radio" name="gender" id="dot-3">
@@ -106,7 +106,7 @@
                 <span class="gender">Other</span>
               </label>
             </div>
-          </div>
+          </div> -->
           <div class="button">
             <input type="submit" value="Register">
           </div>

@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const Student = require("./models/student");
 const faculty = require("./models/faculty");
 const app = express();
+const bcrypt = require("bcrypt");
 mongoose.set('strictQuery', true);
 app.set("view engine","ejs");
 app.use("/assets",express.static("assets"))
@@ -21,8 +22,9 @@ app.use(sessions({
     cookie: { maxAge: (24 * 60 * 60 * 1000) },
     resave: false 
 }));
+const saltRounds = 10;
 var session;
-
+var db = mongoose.connection;
 mongoose.connect(process.env.MONGODB_URL,(error)=>{
     if(error)throw error;
 });
@@ -64,7 +66,8 @@ app.get("/studentdashboard", async (req,res)=>{
 });
 
 // app.get("/facultydashboard",(req,res)=>{
-//     res.render("facultydashboard");});
+//     res.render("facultydashboard");
+// });
 
 app.get("/studentregistration",(req,res)=>{
     res.render("studentregistration");
@@ -80,16 +83,53 @@ app.post("/studentlogin", async function(req, res){
     try {
          const student = await Student.findOne({ email: req.body.email });
         if (student){
-            const result = req.body.password === student.password;
-            if (result){
-                session=req.session;
-                session.email=req.body.email;
-                console.log(req.session)
-                res.redirect("/studentdashboard");
-            }
-            else{res.status(401).send("Invalid credentials!")}
+            bcrypt.compare(req.body.password, student.password, function(err, result) {
+                if(err)console.log(err);
+                if (result){
+                    session=req.session;
+                    session.email=req.body.email;
+                    console.log(req.session)
+                    res.redirect("/studentdashboard");
+                }
+                else{res.status(401).send("Invalid credentials!")}
+            });
         } 
         else{res.status(401).send("Invalid credentials!")}
+    }
+    catch(error){res.status(400).send("Something went wrong!")}
+});
+
+app.post("/studentregistration", async function(req,res){
+    try{
+        bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+            if(err)console.log(err);
+
+            const password  = hash;
+            var data = new Student({
+                name: req.body.name,
+                email: req.body.email,
+                per_mail: req.body.per_mail,
+                password: password,
+                prn: req.body.prn,
+                phone: req.body.phone,
+                sem: req.body.sem,
+                branch: req.body.branch,
+                spec: req.body.spec
+                // gender: req.body.gender
+            });
+            
+            data.save((err,data)=>{
+                if(err)console.log(err);
+                else{console.log("User Created!")}
+    
+            });
+            
+        });
+        
+
+
+        
+        
     }
     catch(error){res.status(400).send("Something went wrong!")}
 });
