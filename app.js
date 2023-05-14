@@ -29,6 +29,7 @@ mongoose.connect(process.env.MONGODB_URL,(error)=>{
     if(error)throw error;
 });
 
+
 app.get("/",(req,res)=>{
     res.sendFile(__dirname + "/index.html");
 });
@@ -38,6 +39,7 @@ app.get('/studentlogin',(req,res) => {
     if(session.email){res.redirect("/studentdashboard");}
     else{res.render("studentlogin");}
 });
+
 
 app.get("/facultylogin",(req,res)=>{
     res.render("facultylogin");
@@ -68,7 +70,6 @@ app.get("/studentdashboard", async (req,res)=>{
 // app.get("/facultydashboard",(req,res)=>{
 //     res.render("facultydashboard");
 // });
-
 
 app.get("/studentregistration",(req,res)=>{
     res.render("studentregistration");
