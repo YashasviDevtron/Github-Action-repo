@@ -71,6 +71,7 @@ app.get("/studentdashboard", async (req,res)=>{
 //     res.render("facultydashboard");
 // });
 
+
 app.get("/studentregistration",(req,res)=>{
     res.render("studentregistration");
 });
@@ -119,6 +120,7 @@ app.post("/studentregistration", async function(req,res){
                 spec: req.body.spec
                 // gender: req.body.gender
             });
+
             
             data.save((err,data)=>{
                 if(err)console.log(err);
