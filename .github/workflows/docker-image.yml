@@ -11,19 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-      name: Build the Docker image
-      with:
-        run: docker build . --file Dockerfile --tag yashasvi7/nodeapp:$(date +%s)
-      
-    - uses: docker/login-action@v3
-      name: login in Docker hub
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-        run: docker login
+      name: Check out code
 
-    - uses: docker/build-push-action@v5
-      name: push the docker image
+    - uses: mr-smithers-excellent/docker-build-push@v6
+      name: Build & push Docker image
       with:
         image: yashasvi7/nodeapp
-        run: docker push image
+        registry: docker.io 
+        dockerfile: Dockerfile 
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
