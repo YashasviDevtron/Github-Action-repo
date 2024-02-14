@@ -16,6 +16,7 @@ if [ ! -d "$UPLOAD_ASSET" ]; then
     exit 1
 fi
 
+
 if [ $(git tag -l "${TAG}") ]; then
    echo "Tag ${TAG} already exists"
 else
@@ -24,8 +25,13 @@ else
    git push origin "${TAG}"
 fi
 
-gh release create --target "$REVISION" --title "Release $TAG" --notes-file "$RELEASE_NOTES_PATH/$RELEASE_FILE_NAME" "$TAG" --verify-tag
-echo "Release $TAG created successfully."
+if gh release view "$TAG" &>/dev/null; then
+    echo "Release with tag '$TAG' already exists."
+else
+    gh release create --target "$REVISION" --title "Release $TAG" --notes-file "$RELEASE_NOTES_PATH/$RELEASE_FILE_NAME" "$TAG" --verify-tag
+    echo "Release $TAG created successfully."
+fi 
+
 
 cmd=""
 for file in "$UPLOAD_ASSET"/*;
