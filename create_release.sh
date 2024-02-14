@@ -7,17 +7,6 @@ read -p "Enter the path to the release notes file: " RELEASE_NOTES_PATH
 read -p "Enter the name of the release file: " RELEASE_FILE_NAME
 read -p "Enter the path to the directory containing release assets: " UPLOAD_ASSET
 
-if [ $(git tag -l "$TAG") ]; then
-    echo "Tag $TAG already exist"
-    exit 1
-fi 
-
-if [ $(gh release view "$TAG") ]; then
-    echo "Release already exist" 
-    exit 1
-fi 
-
-
 if [ ! -d "$RELEASE_NOTES_PATH" ]; then
     echo "Release notes file not found: $RELEASE_NOTES_PATH"
     exit 1
@@ -28,21 +17,22 @@ if [ ! -d "$UPLOAD_ASSET" ]; then
     exit 1
 fi
 
-# Appending command to upload multiple release assets.
-#UPLOAD_ASSET=$(workspaces.input.path)/* 
+if [ $(git tag -l "${TAG}") ]; then
+   echo "Tag ${TAG} already exists"
+   exit 1
+fi 
 
+git tag "${TAG}"
+echo "Tag ${TAG} created successfully."
+git push origin "${TAG}"
+
+
+gh release create --target "$REVISION" --title "Release $TAG" -n "$RELEASE_NOTES_PATH/$RELEASE_FILE_NAME" "$TAG" --verify-tag
+echo "Release $TAG created successfully."
 
 cmd=""
 for file in "$UPLOAD_ASSET"/*;
-do
-  cmd+="--attach $file "
-done
+  do
+    gh release upload "$TAG" "$file" --clobber
+  done
 
-# Create a release
-echo "Creating release $TAG"
-
-hub release create \
-  --commitish "$REVISION" \
-  --file "$RELEASE_NOTES_PATH/$RELEASE_FILE_NAME" \
-  $cmd \
-  "$TAG"
