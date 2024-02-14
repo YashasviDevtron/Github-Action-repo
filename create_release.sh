@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+
 
 read -p "Enter the tag for the release: " TAG
 read -p "Enter the revision (commitish) for the release: " REVISION
@@ -17,15 +17,13 @@ if [ ! -d "$UPLOAD_ASSET" ]; then
     exit 1
 fi
 
-if [ $(git tag -l "${TAG}") ]; then
-   echo "Tag ${TAG} already exists"
-   exit 1
-fi 
-
-git tag "${TAG}"
-echo "Tag ${TAG} created successfully."
-git push origin "${TAG}"
-
+#if [ $(git tag -l "${TAG}") ]; then
+ #  echo "Tag ${TAG} already exists"
+#else
+   git tag "${TAG}"
+   echo "Tag ${TAG} created successfully."
+   git push origin "${TAG}"
+#fi
 
 gh release create --target "$REVISION" --title "Release $TAG" -n "$RELEASE_NOTES_PATH/$RELEASE_FILE_NAME" "$TAG" --verify-tag
 echo "Release $TAG created successfully."
