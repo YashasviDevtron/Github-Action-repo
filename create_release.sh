@@ -12,6 +12,11 @@ if [ $(git tag -l "$TAG") ]; then
     exit 1
 fi 
 
+if [ $(gh release view "$TAG") ]; then
+    echo "Release already exist" 
+    exit 1
+fi 
+
 
 if [ ! -d "$RELEASE_NOTES_PATH" ]; then
     echo "Release notes file not found: $RELEASE_NOTES_PATH"
