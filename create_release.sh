@@ -3,10 +3,9 @@ set -ex
 read -p "Enter the tag for the release: " TAG
 read -p "Enter the revision (commitish) for the release: " REVISION
 read -p "Enter the path to the release notes file: " RELEASE_NOTES_PATH
-read -p "Enter the name of the release file: " RELEASE_FILE_NAME
 read -p "Enter the path to the directory containing release assets: " UPLOAD_ASSET
 
-if [ ! -d "$RELEASE_NOTES_PATH" ]; then
+if [ ! -f "$RELEASE_NOTES_PATH" ]; then
     echo "Release notes file not found: $RELEASE_NOTES_PATH"
     exit 1
 fi
@@ -28,7 +27,8 @@ fi
 if gh release view "$TAG" &>/dev/null; then
     echo "Release with tag '$TAG' already exists."
 else
-    gh release create --target "$REVISION" --title "Release $TAG" --notes-file "$RELEASE_NOTES_PATH/$RELEASE_FILE_NAME" "$TAG" --verify-tag
+    gh release create --target "$REVISION" --title "Release $TAG" --notes-file "$RELEASE_NOTES_PATH" \
+    "$TAG"  --verify-tag
     echo "Release $TAG created successfully."
 fi 
 
@@ -36,6 +36,6 @@ fi
 cmd=""
 for file in "$UPLOAD_ASSET"/*;
   do
-    gh release upload "$TAG" "$file" 
+   gh release upload "$TAG" "$file" 
   done
 
