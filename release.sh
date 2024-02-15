@@ -17,7 +17,7 @@ if [ ! -d "$UPLOAD_ASSET" ]; then
 fi
 
 # Check if the tag exists
-if git tag -l "${TAG}" >/dev/null; then
+if [ $(git tag -l "${TAG}") ]; then
    echo "Tag ${TAG} already exists"
 else
    git tag "${TAG}"
@@ -38,4 +38,3 @@ else
         gh release upload "$TAG" "$file" 
     done
 fi
-
