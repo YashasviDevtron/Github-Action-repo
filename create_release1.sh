@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -ex
-#hhh
+#hhhello
 read -p "Enter the tag for the release: " TAG
 read -p "Enter the release number: " RELEASE_NUMBER
 read -p "Enter the path to the release notes file: " RELEASE_NOTES_PATH
