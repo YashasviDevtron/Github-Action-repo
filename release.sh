@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 set -ex
 read -p "Enter the tag for the release: " TAG
 read -p "Enter the revision (commitish) for the release: " REVISION
