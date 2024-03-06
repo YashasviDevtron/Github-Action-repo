@@ -39,7 +39,7 @@ fi
   fi
 
 
-#if directory is not present
+#if directory path is not present
 
   if [[ -d "$UPLOAD_ASSET" ]]; then
     for file in "$UPLOAD_ASSET"/*; do
