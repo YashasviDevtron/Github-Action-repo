@@ -5,7 +5,7 @@ on:
 
 jobs:
   create_tag:
-    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'common-lib' && github.event.pull_request.head.ref == 'main'
+    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'main'
     runs-on: ubuntu-latest
 
     steps:
