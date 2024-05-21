@@ -5,7 +5,7 @@ on:
 
 jobs:
   create_tag:
-    if: github.event.pull_request.merged == true && github.event.pull_request.head.ref == 'main'
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
     runs-on: ubuntu-latest
 
     steps:
@@ -17,5 +17,7 @@ jobs:
 
       - name: Create Tag
         run: |
-          TAG_NAME=v1.2.1
-          gh create $TAG_NAME
+         if: git remote -v == 'common-lib'
+         run: 
+            TAG_NAME=v1.2.1
+            gh create $TAG_NAME
