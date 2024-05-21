@@ -1,0 +1,69 @@
+name: Creating Tag on PR Merge from main branch for specific repo
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+
+  create_tag:
+    if: github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: pip install GitPython
+
+    - name: Get repository type and update version
+      id: version
+      run: |
+        import os
+        import git
+
+        repo = git.Repo(os.getcwd())
+        remote_url = repo.remotes.origin.url
+
+        if "common-lib" in remote_url:
+            repo_type = "common-lib"
+        elif "common-lib-private" in remote_url:
+            repo_type = "common-lib-private"
+        else:
+            print("::error::This workflow is only designed to work with the common-lib and common-lib-private repositories.")
+            exit(1)
+
+        current_version = repo.git.describe("--tags", "--abbrev=0").strip()
+        version_parts = current_version.split(".")
+        major_version = int(version_parts[0])
+        minor_version = int(version_parts[1])
+        patch_version = int(version_parts[2])
+
+        version_type = input("Is this a minor, major, or patch update? (minor/major/patch) [minor] ").lower() or "minor"
+
+        if version_type == "minor":
+            minor_version += 1
+            patch_version = 0
+        elif version_type == "major":
+            major_version += 1
+            minor_version = 0
+            patch_version = 0
+        else:
+            patch_version += 1
+
+        new_version = f"{major_version}.{minor_version}.{patch_version}"
+        tag_name = f"{repo_type}-{new_version}"
+
+        print(f"::set-output name=tag::{tag_name}")
+
+    - name: Create Tag
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh create ${{ steps.version.outputs.tag }}
