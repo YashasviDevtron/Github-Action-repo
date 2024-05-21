@@ -17,7 +17,5 @@ jobs:
 
       - name: Create Tag
         run: |
-         if: git remote -v == 'common-lib'
-         run: 
             TAG_NAME=v1.2.1
             gh create $TAG_NAME
